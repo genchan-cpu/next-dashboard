@@ -13,13 +13,15 @@ export default function Search({ placeholder }: { placeholder: string }) {
     console.log(`Searching... ${term}`);
 
     const params = new URLSearchParams(searchParams);
+    params.set('page', '1');
     if (term) {
       params.set('query', term);
     } else {
-      params.delete('delete');
+      params.delete('query');
     }
     replace(`${pathname}?${params.toString()}`); // pathnameは現在のパス(/dashboard/invoices)
-  }, 300);
+  }, 200);
+
   return (
     <div className="relative flex flex-1 flex-shrink-0">
       <label htmlFor="search" className="sr-only">
